@@ -89,7 +89,7 @@ PARTIE 2 :
 SELECT *
 FROM clients
 WHERE nom LIKE 'D%';
-
+```
 
 ![requête 1](img/1.png)
 
