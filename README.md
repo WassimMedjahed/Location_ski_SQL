@@ -255,7 +255,7 @@ FROM (
 
 ![requête 9](img/9.png)
 
-10 - Calcul du nombre de fiches de location établies pour les catégories de location Ski alpin, Surf et Patinette
+🔟 - Calcul du nombre de fiches de location établies pour les catégories de location Ski alpin, Surf et Patinette
 
 ```sql
 SELECT 
