@@ -1,7 +1,7 @@
 -- ----------------------------------------------------------------------------------------------------------------
 Partie 1 : creation de la base de donnees 
 -- ----------------------------------------------------------------------------------------------------------------
-
+``` sql
 CREATE DATABASE IF NOT EXISTS location_ski;
 USE location_ski;
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS lignesFic (
     FOREIGN KEY (refart) REFERENCES articles(refart)
 );
 
-
+```
 -- ----------------------------------------------------------------------------------------------------------------
 PARTIE 2 : 
 -- ----------------------------------------------------------------------------------------------------------------
@@ -96,12 +96,16 @@ WHERE nom LIKE 'D%';
 
 2️⃣ Nom et prénom de tous les clients
 
+```sql
 SELECT nom, prenom
 FROM clients;
+```
 
+![requête 2](img/2.png)
 
 3️⃣ Liste des fiches (n°, état) pour les clients (nom, prénom) qui habitent en Loire Atlantique (44)
 
+```sql
 SELECT 
     fiches.noFic, 
     fiches.etat, 
@@ -116,8 +120,13 @@ ON
 WHERE 
     clients.cpo LIKE '44%';
 
+```  
+
+![requête 3](img/3.png)
+
 4️⃣ Détail de la fiche n°1002
 
+```sql
 SELECT 
     f.noFic, 
     c.nom, 
@@ -136,8 +145,13 @@ JOIN grilleTarifs gt ON a.codeGam = gt.codeGam AND a.codeCate = gt.codeCate
 JOIN tarifs t ON gt.codeTarif = t.codeTarif
 WHERE f.noFic = 1002;
 
+```
+
+![requête 4](img/4.png)
+
 5️⃣ Prix journalier moyen de location par gamme
 
+```sql
 SELECT 
     g.libelle AS 'Gamme',
     AVG(t.prixJour) AS 'Prix journalier moyen'
@@ -150,8 +164,13 @@ JOIN
 GROUP BY 
     g.libelle
 
+```
+
+![requête 5](img/5.png)
+
 6️⃣ Détail de la fiche n°1002 avec le total
 
+```sql
 SELECT 
     f.noFic, 
     c.nom, 
@@ -172,8 +191,13 @@ JOIN tarifs t ON gt.codeTarif = t.codeTarif
 WHERE f.noFic = 1002;
 
 
+```
+
+![requête 6](img/6.png)
+
 7️⃣ Grille des tarifs
 
+```sql
 SELECT 
     g.libelle AS 'Gamme',
     c.libelle AS 'Catégorie',
@@ -189,10 +213,14 @@ JOIN
     tarifs t ON gt.codeTarif = t.codeTarif
 ORDER BY 
     g.libelle, c.libelle, t.prixJour;
+```
+
+![requête 7](img/7.png)
 
 
 8️⃣ Liste des locations de la catégorie SURF 
 
+```sql
 SELECT 
     a.refart,
     a.designation,
@@ -205,9 +233,13 @@ WHERE
     a.codeCate = 'SURF'
 GROUP BY 
     a.refart, a.designation;
+```
+
+![requête 9](img/9.png)
 
 9️⃣ Calcul du nombre moyen d’articles loués par fiche de location
 
+```sql
 SELECT 
     AVG(article_count) AS 'nb_lignes_moyen_par_fiche'
 FROM (
@@ -219,9 +251,13 @@ FROM (
     GROUP BY 
         noFic
 ) AS fiche_counts;
+```
+
+![requête 9](img/9.png)
 
 10 - Calcul du nombre de fiches de location établies pour les catégories de location Ski alpin, Surf et Patinette
 
+```sql
 SELECT 
     c.libelle AS categorie, 
     COUNT(f.noFic) AS nombre_de_location
@@ -237,9 +273,13 @@ WHERE
     c.libelle IN ('Ski alpin', 'Surf', 'Patinette')
 GROUP BY 
     c.libelle;
+```
+
+![requête 10](img/10.png)
 
 11 Calcul du montant moyen des fiches de location
 
+```sql
 SELECT 
     AVG(total_par_fiche) AS montant_moyen
 FROM (
@@ -259,3 +299,6 @@ FROM (
     GROUP BY 
         f.noFic
 ) sous_requete;
+```
+
+![requête 11](img/11.png)
