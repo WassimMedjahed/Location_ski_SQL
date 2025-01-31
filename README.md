@@ -85,9 +85,11 @@ PARTIE 2 :
 
 1️⃣ Liste des clients (toutes les informations) dont le nom commence par un D
 
+```sql
 SELECT *
 FROM clients
 WHERE nom LIKE 'D%';
+
 
 ![requête 1](img/1.png)
 
